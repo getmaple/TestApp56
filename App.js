@@ -35,7 +35,6 @@ export default class App extends Component<Props> {
         </Text>
         <TextInput
             style={{ width: 200 }}
-            // onChangeText={text => this.setState({ text })}
             onChangeText={(text) => this.setState({ text })}
             value={this.state.text}
         />

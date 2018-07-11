@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-class Terms extends Component {
-    // render = () => <Text>Hello</Text>
+class ArrowFunction extends Component {
+    render = () => <Text>Hello</Text>
+}
 
+class NonArrowFunction extends Component {
     render() {
         return (
             <View>
@@ -15,18 +17,33 @@ class Terms extends Component {
     }
 }
 
-describe('Terms', () => {
-    let props;
+describe('with arrow function', () => {
     let renderer;
     const render = () => {
         if (! renderer) {
             renderer = new ShallowRenderer();
-            renderer.render(<Terms {...props} />);
+            renderer.render(<ArrowFunction />);
         }
         return renderer;
     };
 
-    it('renders when terms ARE required', () => {
+    it('renders', () => {
+        const rendered = render().getRenderOutput();
+        expect(rendered).toBeTruthy();
+    });
+});
+
+describe('with non arrow function', () => {
+    let renderer;
+    const render = () => {
+        if (! renderer) {
+            renderer = new ShallowRenderer();
+            renderer.render(<NonArrowFunction />);
+        }
+        return renderer;
+    };
+
+    it('renders', () => {
         const rendered = render().getRenderOutput();
         expect(rendered).toBeTruthy();
     });
